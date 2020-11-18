@@ -11,3 +11,16 @@ D:\Desktop\SDMS\SDMS.Domain\obj\Debug\SDMS.Domain.csproj.CoreCompileInputs.cache
 D:\Desktop\SDMS\SDMS.Domain\obj\Debug\SDMS.Domain.csproj.CopyComplete
 D:\Desktop\SDMS\SDMS.Domain\obj\Debug\SDMS.Domain.dll
 D:\Desktop\SDMS\SDMS.Domain\obj\Debug\SDMS.Domain.pdb
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\bin\Debug\SDMS.Domain.dll.config
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\bin\Debug\SDMS.Domain.dll
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\bin\Debug\SDMS.Domain.pdb
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\bin\Debug\EntityFramework.dll
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\bin\Debug\EntityFramework.xml
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\obj\Debug\SDMS.Domain.csproj.CoreCompileInputs.cache
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\obj\Debug\SDMS.Domain.csproj.CopyComplete
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\obj\Debug\SDMS.Domain.dll
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\obj\Debug\SDMS.Domain.pdb
+D:\Users\LQWHY\Source\Repos\SDMS.Domain\obj\Debug\SDMS.Domain.csprojAssemblyReference.cache

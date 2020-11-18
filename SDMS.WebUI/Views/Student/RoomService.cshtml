@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "RoomService";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<style>
+    form{
+        margin:10px auto;
+        width:1200px;
+    }
+    .form-group{
+        width:400px !important;
+        margin:10px auto !important;
+    }
+    .form-horizontal .control-label{
+        padding-top:0px !important;
+    }
+    .form-horizontal{
+     width:600px;
+     margin:15px auto !important;
+    }
+    select {
+        width: 200px;
+    }
+    .panel-footer {
+        padding: 0px !important;
+    }
+    textarea{
+        width:200px;
+        height:150px;
+    }
+</style>
+<h2 style="text-align:center;">寝室报修</h2>
+@using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Name">楼栋</label>
+                <div class="col-md-10">
+                    <select>
+                        <option value="1">河西15幢</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="CategoryId">楼层</label>
+                <div class="col-md-10">
+                    @*@Html.DropDownListFor(model => model.Category_ID, ViewBag.CategoryList as IEnumerable<SelectListItem>, new { @class = "form-control" })*@
+                    <select>
+                        <option value="1">15-1</option>
+                        <option value="1">15-2</option>
+                        <option value="1">15-3</option>
+                        <option value="1">15-4</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Name">房间</label>
+                <div class="col-md-10">
+                    <select>
+                        <option value="1">西15-623</option>
+                        <option value="1">西15-624</option>
+                        <option value="1">西15-625</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Name">维修描述</label>
+                <div class="col-md-10">
+                 <textarea></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="保存" class="btn btn-default" />
+                @Html.ActionLink("返回列表", "Index")
+            </div>
+        </div>
+    </div>
+
+}
+

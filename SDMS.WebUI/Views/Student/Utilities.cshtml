@@ -1,0 +1,296 @@
+﻿
+@{
+    ViewBag.Title = "Utilities";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<style>
+    .container{
+        margin-top:45px;
+        width:1100px !important;
+    }
+   /* .show .title {
+       padding-left:0px;
+        list-style: none;
+        margin: 0;
+        height:550px;
+    }*/
+    .show {
+        display: flex !important;
+        flex-wrap: nowrap;
+        justify-content:space-between;
+        align-items:center;
+        height: 550px;
+    }
+        .show .title li {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            align-items: center;
+            margin-top:10px;
+            width: 130px;
+            height: 130px;
+            border: 1px solid #000000;
+        }
+    .details{
+        width:800px;
+        height:550px;
+        border:1px solid #000000;
+    }
+    .Elec-detail{
+        width:80%;
+        height:70%;
+        margin:20px auto;
+        border:1px solid #000000;
+    }
+        .Elec-detail ul {
+            list-style: none;
+            height:80%;
+            overflow-y: auto;
+        }
+        .Elec-detail ul li {
+            padding: 15px 50px 0px 10px;
+            width: 550px;
+            height: 50px;
+            border-bottom:1px solid #000;
+        }
+    .Elec-detail ul li #date{
+        float:left;
+
+    }
+        .Elec-detail ul li #power {
+            float: right;
+        }
+    .Elec-detail form{
+        width:80%;
+        margin:15px auto;
+        border:1px solid #ccc;
+    }
+    .form-horizontal{
+        width:80%;
+        margin:20px auto;
+        text-align:center;
+    }
+    .col-md-offset-2
+    {
+        margin-left:30% !important;
+    }
+    .bg-primary {
+        background-color: rgba(41, 199, 95, 0.75);
+        width: 40%;
+        margin-bottom: 25px;
+        margin-left: 20px;
+    }
+    .Money {
+        list-style: none;
+        display: flex;
+        cursor: pointer;
+        padding:0px;
+    }
+
+    .item {
+        display: flex;
+        width: 200px;
+        height: 100px;
+        border: 1px solid #e5e5e5;
+        margin: auto;
+        flex-direction: column;
+        font-size: 2rem;
+        text-align: center;
+        border-radius: 4px;
+        margin: 0 6px;
+        background-color: #fff;
+        position: relative;
+    }
+
+    .Money li span {
+        margin: auto auto;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .arrow-icon {
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 20px;
+        width: 20px;
+        background: url(../../Images/arrow_icon.png) 0 0 no-repeat;
+    }
+
+    .cur {
+        width: 201px;
+        height: 101px;
+        border: 2px solid #f50;
+    }
+
+    .hcur {
+        width: 201px !important;
+        height: 101px !important;
+        border: 1px solid #f50 !important;
+    }
+
+    .recharge {
+        margin-right: 40px !important;
+        margin-top: 20px !important;
+    }
+
+    .arrow-icon {
+        display: none;
+    }
+    .btn.btn-primary{
+        border:none;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $(".title").children().click(function () {
+            var onthis = this.getAttribute("id");
+            $("div[title =" + onthis + "]").show();
+            $("div[title =" + onthis + "]").siblings().hide();
+            $(".side").show();
+        })
+    })
+</script>
+<script>
+    $(function () {
+        $(".item").click(function () {
+            $(".arrow-icon").hide();
+            $(this).toggleClass("cur");
+            $(this).find(".arrow-icon").show();
+            $(this).siblings().removeClass("cur");
+        });
+        $(".item").hover(function () {
+            $(this).toggleClass("hcur");
+        });
+        $(".recharge").click(function () {
+            $.ajax({
+                type: "post",
+                url: "/Reader/Recharge",
+                data: { money: $(".Money").find(".cur").children("span").text() },
+                success: function (result) {
+
+                }
+
+            })
+            window.location.href = "/Reader/Recharge";
+        });
+    });
+</script>
+<div class="container">
+    <div class="show">
+        <div class="side">
+            <ul class="title">
+                <li id="elc-title">
+                    <a href="#" class="dropdown-toggle" >
+                        <div class="icon">
+                            <i class="fa fa-cube" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">用电情况</div>
+                    </a>
+                </li>
+                <li id="water-title">
+                    <a href="#" class="dropdown-toggle" >
+                        <div class="icon">
+                            <i class="fa fa-cube" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">用水情况</div>
+                    </a>
+                </li>
+                <li id="payelc-title">
+                    <a href="#" class="dropdown-toggle" >
+                        <div class="icon">
+                            <i class="fa fa-cube" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">电费缴纳</div>
+                    </a>
+                </li>
+                <li id="paywater-title">
+                    <a href="#" class="dropdown-toggle" >
+                        <div class="icon">
+                            <i class="fa fa-cube" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">水费缴纳</div>
+                    </a>
+                </li>
+
+            </ul>
+          
+        </div>
+
+        <div class="details" id="elc" title="elc-title">
+            <h3 style="text-align:center;">房间</h3>
+            <div style="width:40%;height:30px;margin: 30px auto;font-size:18px;"><span style="float:left">剩余电量</span><span style="float:right">276.42度</span></div>
+            <div class="Elec-detail">
+                <div style="display:inline-flex;width:560px;justify-content:space-around;margin:10px 30px;"><span>日期</span><span style="margin-left:320px;">用电量</span></div>
+                <ul>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="details" id="water" title="water-title" style="display:none">
+            <h3 style="text-align:center;">房间</h3>
+            <div style="width:40%;height:30px;margin: 30px auto;font-size:18px;"><span style="float:left">剩余水量</span><span style="float:right">276.42升</span></div>
+            <div class="Elec-detail">
+                <div style="display:inline-flex;width:560px;justify-content:space-around;margin:10px 30px;"><span>日期</span><span style="margin-left:320px;">用水量</span></div>
+                <ul>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                    <li><span id="date">2020-11-11</span><span id="power">3.2</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="details" id="pay-elc" title="payelc-title" style="display:none">
+            <h3 style="text-align:center;">电费缴纳</h3>
+            <div class="bg-primary" style="width:40%;height:30px;margin: 30px auto;font-size:18px;"><span >当前余额：</span><span>500元</span></div>
+            <div class="">
+                <div class="border-success ">
+                    <ul class="Money">
+                        <li class="item cur"><span>10</span><div class="arrow-icon" style="display:block"></div></li>
+                        <li class="item "><span>30</span><div class="arrow-icon"></div></li>
+                        <li class="item "><span>50</span><div class="arrow-icon"></div></li>
+                        <li class="item "><span>100</span><div class="arrow-icon"></div></li>
+                        <li class="item "><span>200</span><div class="arrow-icon"></div></li>
+                    </ul>
+                    <button class="btn btn-primary pull-right recharge" style=" background-color: rgba(41, 199, 95, 0.75)">确认充值</button>
+                </div>
+            </div>
+        </div>
+        <div class="details" id="pay-water" title="paywater-title" style="display:none">
+            <h3 style="text-align:center;">水费缴纳</h3>
+            <div class="bg-primary" style="width:40%;height:30px;margin: 30px auto;font-size:18px;"><span>当前余额：</span><span>500元</span></div>
+            <div class="">
+                <div class="border-success ">
+                    <ul class="Money">
+                        <li class="item cur"><span>10</span><div class="arrow-icon" style="display:block"></div></li>
+                        <li class="item "><span>30</span><div class="arrow-icon"></div></li>
+                        <li class="item "><span>50</span><div class="arrow-icon"></div></li>
+                        <li class="item "><span>100</span><div class="arrow-icon"></div></li>
+                        <li class="item "><span>200</span><div class="arrow-icon"></div></li>
+                    </ul>
+                    <button class="btn btn-primary pull-right recharge" style=" background-color: rgba(41, 199, 95, 0.75)">确认充值</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
