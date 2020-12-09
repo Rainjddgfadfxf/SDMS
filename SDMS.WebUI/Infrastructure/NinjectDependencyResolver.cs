@@ -11,15 +11,17 @@ namespace SDMS.WebUI.Infrastructure
     public class NinjectDependencyResolver : IDependencyResolver
     {
         private IKernel kernel;
-        public NinjectDependencyResolver(IKernel kernelParam)
+        public NinjectDependencyResolver()
         {
-            kernel = kernelParam;
+            kernel = new StandardKernel();
             AddBindings();
         }
 
         private void AddBindings()
         {
             kernel.Bind<IAdminsRepository>().To<EFAdminsRepository>();
+            kernel.Bind<IStudentRepository>().To<EFStudentRepository>();
+            kernel.Bind<ICommonRepository>().To<EFCommonRepository>();
         }
 
         public object GetService(Type serviceType)

@@ -4,20 +4,206 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SDMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SDMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PassWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="ChangeDorm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OldDormNum" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NewDormNum" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Why" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Begindate" Type="date" Nullable="false" />
+          <Property Name="FinishDate" Type="date" />
+          <Property Name="AgreeDate" Type="date" />
+          <Property Name="StaffOpinion" Type="bit" />
+          <Property Name="StudentOpinion" Type="bit" />
+        </EntityType>
+        <EntityType Name="Dorm">
+          <Key>
+            <PropertyRef Name="DormNum" />
+          </Key>
+          <Property Name="LouNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="AllowNum" Type="int" Nullable="false" />
+          <Property Name="UsedNum" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lease">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="LeaseGood" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LeaseDate" Type="date" Nullable="false" />
+          <Property Name="ReturnDate" Type="date" />
+          <Property Name="LeaseMoney" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="Repair">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Goods" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Why" Type="nvarchar" MaxLength="50" />
+          <Property Name="CommitDate" Type="date" Nullable="false" />
+          <Property Name="ResolutionDate" Type="date" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birth" Type="date" Nullable="false" />
+          <Property Name="Sex" Type="nchar" MaxLength="10" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="Managenment" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Class" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sex" Type="nchar" MaxLength="10" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" />
+          <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WaterAndElectricity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Mouth" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UseElectricity" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="EMoney" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="UseWater" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="WMoney" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <Association Name="FK_ChangeDorm_Dorm">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="ChangeDorm" Type="Self.ChangeDorm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="ChangeDorm">
+              <PropertyRef Name="OldDormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangeDorm_Dorm1">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="ChangeDorm" Type="Self.ChangeDorm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="ChangeDorm">
+              <PropertyRef Name="NewDormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangeDorm_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="ChangeDorm" Type="Self.ChangeDorm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ChangeDorm">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lease_Dorm">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="Lease" Type="Self.Lease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="Lease">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Dorm">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WaterAndElectricity_Dorm">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="WaterAndElectricity" Type="Self.WaterAndElectricity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="WaterAndElectricity">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SDMSModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChangeDorm" EntityType="Self.ChangeDorm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dorm" EntityType="Self.Dorm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lease" EntityType="Self.Lease" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repair" EntityType="Self.Repair" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WaterAndElectricity" EntityType="Self.WaterAndElectricity" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChangeDorm_Dorm" Association="Self.FK_ChangeDorm_Dorm">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="ChangeDorm" EntitySet="ChangeDorm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangeDorm_Dorm1" Association="Self.FK_ChangeDorm_Dorm1">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="ChangeDorm" EntitySet="ChangeDorm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangeDorm_Student" Association="Self.FK_ChangeDorm_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="ChangeDorm" EntitySet="ChangeDorm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lease_Dorm" Association="Self.FK_Lease_Dorm">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="Lease" EntitySet="Lease" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Dorm" Association="Self.FK_Student_Dorm">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WaterAndElectricity_Dorm" Association="Self.FK_WaterAndElectricity_Dorm">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="WaterAndElectricity" EntitySet="WaterAndElectricity" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SDMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -27,11 +213,218 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="Dorm">
+          <Key>
+            <PropertyRef Name="DormNum" />
+          </Key>
+          <Property Name="LouNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DormNum" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="AllowNum" Type="Int32" Nullable="false" />
+          <Property Name="UsedNum" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Student_Dorm" FromRole="Dorm" ToRole="Student" />
+          <NavigationProperty Name="Lease" Relationship="SDMSModel.FK_Lease_Dorm" FromRole="Dorm" ToRole="Lease" />
+          <NavigationProperty Name="WaterAndElectricity" Relationship="SDMSModel.FK_WaterAndElectricity_Dorm" FromRole="Dorm" ToRole="WaterAndElectricity" />
+          <NavigationProperty Name="ChangeDorm" Relationship="SDMSModel.FK_ChangeDorm_Dorm" FromRole="Dorm" ToRole="ChangeDorm" />
+          <NavigationProperty Name="ChangeDorm1" Relationship="SDMSModel.FK_ChangeDorm_Dorm1" FromRole="Dorm" ToRole="ChangeDorm" />
+        </EntityType>
+        <EntityType Name="Repair">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DormNum" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Goods" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Why" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CommitDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ResolutionDate" Type="DateTime" Precision="0" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="DormNum" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dorm" Relationship="Self.FK_Student_Dorm" FromRole="Student" ToRole="Dorm" />
+          <NavigationProperty Name="ChangeDorm" Relationship="SDMSModel.FK_ChangeDorm_Student" FromRole="Student" ToRole="ChangeDorm" />
+        </EntityType>
+        <EntityType Name="WaterAndElectricity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DormNum" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Mouth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UseElectricity" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="EMoney" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="UseWater" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="WMoney" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="Dorm" Relationship="SDMSModel.FK_WaterAndElectricity_Dorm" FromRole="WaterAndElectricity" ToRole="Dorm" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Birth" />
+            <PropertyRef Name="Position" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Managenment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Student_Dorm">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SDMSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Dorm" EntityType="Self.Dorm" />
+          <EntitySet Name="Repair" EntityType="Self.Repair" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="WaterAndElectricity" EntityType="Self.WaterAndElectricity" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <AssociationSet Name="FK_Student_Dorm" Association="Self.FK_Student_Dorm">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <EntitySet Name="Lease" EntityType="SDMSModel.Lease" />
+          <AssociationSet Name="FK_Lease_Dorm" Association="SDMSModel.FK_Lease_Dorm">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="Lease" EntitySet="Lease" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WaterAndElectricity_Dorm" Association="SDMSModel.FK_WaterAndElectricity_Dorm">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="WaterAndElectricity" EntitySet="WaterAndElectricity" />
+          </AssociationSet>
+          <EntitySet Name="ChangeDorm" EntityType="SDMSModel.ChangeDorm" />
+          <AssociationSet Name="FK_ChangeDorm_Dorm" Association="SDMSModel.FK_ChangeDorm_Dorm">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="ChangeDorm" EntitySet="ChangeDorm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangeDorm_Dorm1" Association="SDMSModel.FK_ChangeDorm_Dorm1">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="ChangeDorm" EntitySet="ChangeDorm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangeDorm_Student" Association="SDMSModel.FK_ChangeDorm_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="ChangeDorm" EntitySet="ChangeDorm" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Lease">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="DormNum" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="LeaseGood" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LeaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="0" />
+          <Property Name="LeaseMoney" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="Dorm" Relationship="SDMSModel.FK_Lease_Dorm" FromRole="Lease" ToRole="Dorm" />
+        </EntityType>
+        <Association Name="FK_Lease_Dorm">
+          <End Type="SDMSModel.Dorm" Role="Dorm" Multiplicity="1" />
+          <End Type="SDMSModel.Lease" Role="Lease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="Lease">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WaterAndElectricity_Dorm">
+          <End Type="SDMSModel.Dorm" Role="Dorm" Multiplicity="1" />
+          <End Type="SDMSModel.WaterAndElectricity" Role="WaterAndElectricity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="WaterAndElectricity">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ChangeDorm">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="OldDormNum" />
+            <PropertyRef Name="NewDormNum" />
+            <PropertyRef Name="Begindate" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OldDormNum" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NewDormNum" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Why" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Begindate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FinishDate" Type="DateTime" Precision="0" />
+          <Property Name="AgreeDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Dorm" Relationship="SDMSModel.FK_ChangeDorm_Dorm" FromRole="ChangeDorm" ToRole="Dorm" />
+          <NavigationProperty Name="Dorm1" Relationship="SDMSModel.FK_ChangeDorm_Dorm1" FromRole="ChangeDorm" ToRole="Dorm" />
+          <NavigationProperty Name="Student" Relationship="SDMSModel.FK_ChangeDorm_Student" FromRole="ChangeDorm" ToRole="Student" />
+          <Property Name="StaffOpinion" Type="Boolean" />
+          <Property Name="StudentOpinion" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_ChangeDorm_Dorm">
+          <End Type="SDMSModel.Dorm" Role="Dorm" Multiplicity="1" />
+          <End Type="SDMSModel.ChangeDorm" Role="ChangeDorm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="ChangeDorm">
+              <PropertyRef Name="OldDormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangeDorm_Dorm1">
+          <End Type="SDMSModel.Dorm" Role="Dorm" Multiplicity="1" />
+          <End Type="SDMSModel.ChangeDorm" Role="ChangeDorm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="ChangeDorm">
+              <PropertyRef Name="NewDormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangeDorm_Student">
+          <End Type="SDMSModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="SDMSModel.ChangeDorm" Role="ChangeDorm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ChangeDorm">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -44,6 +437,97 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dorm">
+            <EntityTypeMapping TypeName="SDMSModel.Dorm">
+              <MappingFragment StoreEntitySet="Dorm">
+                <ScalarProperty Name="LouNum" ColumnName="LouNum" />
+                <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+                <ScalarProperty Name="AllowNum" ColumnName="AllowNum" />
+                <ScalarProperty Name="UsedNum" ColumnName="UsedNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repair">
+            <EntityTypeMapping TypeName="SDMSModel.Repair">
+              <MappingFragment StoreEntitySet="Repair">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+                <ScalarProperty Name="Goods" ColumnName="Goods" />
+                <ScalarProperty Name="Why" ColumnName="Why" />
+                <ScalarProperty Name="CommitDate" ColumnName="CommitDate" />
+                <ScalarProperty Name="ResolutionDate" ColumnName="ResolutionDate" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="SDMSModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WaterAndElectricity">
+            <EntityTypeMapping TypeName="SDMSModel.WaterAndElectricity">
+              <MappingFragment StoreEntitySet="WaterAndElectricity">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+                <ScalarProperty Name="Mouth" ColumnName="Mouth" />
+                <ScalarProperty Name="UseElectricity" ColumnName="UseElectricity" />
+                <ScalarProperty Name="EMoney" ColumnName="EMoney" />
+                <ScalarProperty Name="UseWater" ColumnName="UseWater" />
+                <ScalarProperty Name="WMoney" ColumnName="WMoney" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="SDMSModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Managenment" ColumnName="Managenment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lease">
+            <EntityTypeMapping TypeName="SDMSModel.Lease">
+              <MappingFragment StoreEntitySet="Lease">
+                <ScalarProperty Name="LeaseMoney" ColumnName="LeaseMoney" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="LeaseDate" ColumnName="LeaseDate" />
+                <ScalarProperty Name="LeaseGood" ColumnName="LeaseGood" />
+                <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChangeDorm">
+            <EntityTypeMapping TypeName="SDMSModel.ChangeDorm">
+              <MappingFragment StoreEntitySet="ChangeDorm">
+                <ScalarProperty Name="StudentOpinion" ColumnName="StudentOpinion" />
+                <ScalarProperty Name="StaffOpinion" ColumnName="StaffOpinion" />
+                <ScalarProperty Name="AgreeDate" ColumnName="AgreeDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="Begindate" ColumnName="Begindate" />
+                <ScalarProperty Name="Why" ColumnName="Why" />
+                <ScalarProperty Name="NewDormNum" ColumnName="NewDormNum" />
+                <ScalarProperty Name="OldDormNum" ColumnName="OldDormNum" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

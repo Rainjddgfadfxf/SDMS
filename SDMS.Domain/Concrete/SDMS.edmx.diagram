@@ -4,8 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ef164b862649452fbb63a34e99d1b252" Name="Diagram1">
-        <EntityTypeShape EntityType="SDMSModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="5e9e0fddbe984677b76f18c661c6527a" Name="Diagram1">
+        <EntityTypeShape EntityType="SDMSModel.Admin" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDMSModel.Dorm" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDMSModel.Repair" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDMSModel.Student" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDMSModel.WaterAndElectricity" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDMSModel.Staff" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SDMSModel.FK_Student_Dorm" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SDMSModel.Lease" Width="1.5" PointX="3" PointY="8.25" />
+        <AssociationConnector Association="SDMSModel.FK_Lease_Dorm" />
+        <AssociationConnector Association="SDMSModel.FK_WaterAndElectricity_Dorm" />
+        <EntityTypeShape EntityType="SDMSModel.ChangeDorm" Width="1.5" PointX="7.375" PointY="4.75" />
+        <AssociationConnector Association="SDMSModel.FK_ChangeDorm_Dorm" />
+        <AssociationConnector Association="SDMSModel.FK_ChangeDorm_Dorm1" />
+        <AssociationConnector Association="SDMSModel.FK_ChangeDorm_Student" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -51,11 +51,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAdminsRepository.cs" />
+    <Compile Include="Abstract\ICommonRepository.cs" />
+    <Compile Include="Abstract\IStaffRepository.cs" />
+    <Compile Include="Abstract\IStudentRepository.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Concrete\Admin.cs">
       <DependentUpon>SDMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Concrete\ChangeDorm.cs">
+      <DependentUpon>SDMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\Dorm.cs">
+      <DependentUpon>SDMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Concrete\EFAdminsRepository.cs" />
+    <Compile Include="Concrete\EFCommonRepository.cs" />
+    <Compile Include="Concrete\EFStaffRepository.cs" />
+    <Compile Include="Concrete\EFStudentRepository.cs" />
+    <Compile Include="Concrete\Lease.cs">
+      <DependentUpon>SDMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\Model\DormDetail.cs" />
+    <Compile Include="Concrete\Repair.cs">
+      <DependentUpon>SDMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Concrete\SDMS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,19 +90,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SDMS.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Concrete\Staff.cs">
+      <DependentUpon>SDMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\Student.cs">
+      <DependentUpon>SDMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\WaterAndElectricity.cs">
+      <DependentUpon>SDMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Concrete\SDMS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SDMS.edmx</DependentUpon>
-      <LastGenOutput>SDMS.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Concrete\SDMS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SDMS.edmx</DependentUpon>
-      <LastGenOutput>SDMS.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -98,6 +114,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Concrete\SDMS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SDMS.edmx</DependentUpon>
+      <LastGenOutput>SDMS.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Concrete\SDMS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SDMS.edmx</DependentUpon>
+      <LastGenOutput>SDMS.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

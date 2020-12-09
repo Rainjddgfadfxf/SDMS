@@ -26,5 +26,12 @@ namespace SDMS.Domain.Concrete
         }
     
         public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Dorm> Dorm { get; set; }
+        public virtual DbSet<Repair> Repair { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
+        public virtual DbSet<WaterAndElectricity> WaterAndElectricity { get; set; }
+        public virtual DbSet<Staff> Staff { get; set; }
+        public virtual DbSet<Lease> Lease { get; set; }
+        public virtual DbSet<ChangeDorm> ChangeDorm { get; set; }
     }
 }
