@@ -6,9 +6,223 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="PassWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="ChangeDorm">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OldDormNum" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="NewDormNum" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Why" Type="nvarchar" MaxLength="2000" />
+    <Property Name="Begindate" Type="date" Nullable="false" />
+    <Property Name="FinishDate" Type="date" />
+    <Property Name="AgreeDate" Type="date" />
+    <Property Name="StaffOpinion" Type="bit" />
+    <Property Name="AdminOpinion" Type="bit" />
+  </EntityType>
+  <EntityType Name="Dorm">
+    <Key>
+      <PropertyRef Name="DormNum" />
+    </Key>
+    <Property Name="LouNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="AllowNum" Type="int" Nullable="false" />
+    <Property Name="UsedNum" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DormHygiene">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="DormNum" Type="nchar" MaxLength="10" />
+    <Property Name="InspectionTime" Type="date" />
+    <Property Name="Situation" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Lease">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="LeaseGood" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LeaseDate" Type="date" Nullable="false" />
+    <Property Name="ReturnDate" Type="date" />
+    <Property Name="LeaseMoney" Type="decimal" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="Repair">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Goods" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Why" Type="nvarchar" MaxLength="50" />
+    <Property Name="CommitDate" Type="date" Nullable="false" />
+    <Property Name="ResolutionDate" Type="date" />
+    <Property Name="Money" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ReasonsForUncompletion" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Birth" Type="date" Nullable="false" />
+    <Property Name="Sex" Type="nchar" MaxLength="10" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="10" />
+    <Property Name="Managenment" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sex" Type="nchar" MaxLength="10" />
+    <Property Name="Phone" Type="nchar" MaxLength="11" />
+    <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WaterAndElectricity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Mouth" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UseElectricity" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="EMoney" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="UseWater" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="WMoney" Type="decimal" Precision="5" Scale="2" />
+  </EntityType>
+  <Association Name="FK_ChangeDorm_Dorm">
+    <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+    <End Role="ChangeDorm" Type="Self.ChangeDorm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dorm">
+        <PropertyRef Name="DormNum" />
+      </Principal>
+      <Dependent Role="ChangeDorm">
+        <PropertyRef Name="OldDormNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChangeDorm_Dorm1">
+    <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+    <End Role="ChangeDorm" Type="Self.ChangeDorm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dorm">
+        <PropertyRef Name="DormNum" />
+      </Principal>
+      <Dependent Role="ChangeDorm">
+        <PropertyRef Name="NewDormNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChangeDorm_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="ChangeDorm" Type="Self.ChangeDorm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="ChangeDorm">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DormHygiene_Dorm">
+    <End Role="Dorm" Type="Self.Dorm" Multiplicity="0..1" />
+    <End Role="DormHygiene" Type="Self.DormHygiene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dorm">
+        <PropertyRef Name="DormNum" />
+      </Principal>
+      <Dependent Role="DormHygiene">
+        <PropertyRef Name="DormNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lease_Dorm">
+    <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+    <End Role="Lease" Type="Self.Lease" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dorm">
+        <PropertyRef Name="DormNum" />
+      </Principal>
+      <Dependent Role="Lease">
+        <PropertyRef Name="DormNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Dorm">
+    <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dorm">
+        <PropertyRef Name="DormNum" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="DormNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WaterAndElectricity_Dorm">
+    <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+    <End Role="WaterAndElectricity" Type="Self.WaterAndElectricity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dorm">
+        <PropertyRef Name="DormNum" />
+      </Principal>
+      <Dependent Role="WaterAndElectricity">
+        <PropertyRef Name="DormNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="SDMSModelStoreContainer">
     <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChangeDorm" EntityType="Self.ChangeDorm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dorm" EntityType="Self.Dorm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DormHygiene" EntityType="Self.DormHygiene" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lease" EntityType="Self.Lease" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Repair" EntityType="Self.Repair" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WaterAndElectricity" EntityType="Self.WaterAndElectricity" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ChangeDorm_Dorm" Association="Self.FK_ChangeDorm_Dorm">
+      <End Role="Dorm" EntitySet="Dorm" />
+      <End Role="ChangeDorm" EntitySet="ChangeDorm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChangeDorm_Dorm1" Association="Self.FK_ChangeDorm_Dorm1">
+      <End Role="Dorm" EntitySet="Dorm" />
+      <End Role="ChangeDorm" EntitySet="ChangeDorm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChangeDorm_Student" Association="Self.FK_ChangeDorm_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="ChangeDorm" EntitySet="ChangeDorm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DormHygiene_Dorm" Association="Self.FK_DormHygiene_Dorm">
+      <End Role="Dorm" EntitySet="Dorm" />
+      <End Role="DormHygiene" EntitySet="DormHygiene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lease_Dorm" Association="Self.FK_Lease_Dorm">
+      <End Role="Dorm" EntitySet="Dorm" />
+      <End Role="Lease" EntitySet="Lease" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Dorm" Association="Self.FK_Student_Dorm">
+      <End Role="Dorm" EntitySet="Dorm" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WaterAndElectricity_Dorm" Association="Self.FK_WaterAndElectricity_Dorm">
+      <End Role="Dorm" EntitySet="Dorm" />
+      <End Role="WaterAndElectricity" EntitySet="WaterAndElectricity" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

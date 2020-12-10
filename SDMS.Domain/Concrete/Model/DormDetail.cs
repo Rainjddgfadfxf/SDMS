@@ -11,5 +11,6 @@ namespace SDMS.Domain.Concrete.Model
         public IEnumerable<Student> students { get; set; }
         public Dorm dorm { get; set; }
         public IEnumerable<WaterAndElectricity> waterAndElectricity { get; set; }
+        public IEnumerable<DormHygiene> dormHygienes { get; set; }
     }
 }

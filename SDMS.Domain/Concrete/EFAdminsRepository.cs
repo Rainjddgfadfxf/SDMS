@@ -135,7 +135,27 @@ namespace SDMS.Domain.Concrete
                 }
             }
         }
-
+        public int DealChangeDorm(int Id, bool flag)
+        {
+            using (var db = new SDMSEntities())
+            {
+                using (var dbContextTransaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        ChangeDorm changeDorm = db.ChangeDorm.Find(Id);
+                        if (changeDorm.AdminOpinion != null) return 0;//管理员已处理，无需处理
+                        changeDorm.AdminOpinion = flag;
+                        return 1;//处理完成  
+                    }
+                    catch (Exception)
+                    {
+                        dbContextTransaction.Rollback();
+                        return 2;//数据库添加异常
+                    }
+                }
+            }
+        }
         public int EditStudent(Student student)
         {
             using (var db = new SDMSEntities())

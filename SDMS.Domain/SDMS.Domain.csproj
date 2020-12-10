@@ -64,6 +64,9 @@
     <Compile Include="Concrete\Dorm.cs">
       <DependentUpon>SDMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Concrete\DormHygiene.cs">
+      <DependentUpon>SDMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Concrete\EFAdminsRepository.cs" />
     <Compile Include="Concrete\EFCommonRepository.cs" />
     <Compile Include="Concrete\EFStaffRepository.cs" />

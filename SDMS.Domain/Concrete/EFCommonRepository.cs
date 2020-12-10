@@ -39,16 +39,18 @@ namespace SDMS.Domain.Concrete
             return db.ChangeDorm.Where(e => e.StudentId == student.Code);
         }
 
-        public  DormDetail SearchDorm(string Id)
+        public  DormDetail SearchDorm(string dormNum)
         {
-            Dorm dorm = db.Dorm.Find(Id);
+            Dorm dorm = db.Dorm.Find(dormNum);
             IEnumerable<WaterAndElectricity> waterAndElectricity = db.WaterAndElectricity.Where(e => e.DormNum == dorm.DormNum);
             IEnumerable<Student> students = db.Student.Where(e => e.DormNum == dorm.DormNum);
+            IEnumerable<DormHygiene> dormHygienes = db.DormHygiene.Where(e => e.DormNum == dorm.DormNum);
             return new DormDetail
             {
                 dorm = dorm,
                 waterAndElectricity = waterAndElectricity,
-                students = students
+                students = students,
+                dormHygienes = dormHygienes
             };
 
         }

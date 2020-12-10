@@ -10,7 +10,7 @@ namespace SDMS.Domain.Abstract
     public interface IStudentRepository
     {
         //维修上报
-        int ReportForRepair(Repair repair);
+        int ReportForRepair(string DormNum, string goods, string why, DateTime date);
         //换寝上报
         int ChangeDorm(string StudentId, string newDormNum, string why);
 

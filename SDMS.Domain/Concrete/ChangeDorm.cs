@@ -23,7 +23,7 @@ namespace SDMS.Domain.Concrete
         public Nullable<System.DateTime> FinishDate { get; set; }
         public Nullable<System.DateTime> AgreeDate { get; set; }
         public Nullable<bool> StaffOpinion { get; set; }
-        public Nullable<bool> StudentOpinion { get; set; }
+        public Nullable<bool> AdminOpinion { get; set; }
     
         public virtual Dorm Dorm { get; set; }
         public virtual Dorm Dorm1 { get; set; }

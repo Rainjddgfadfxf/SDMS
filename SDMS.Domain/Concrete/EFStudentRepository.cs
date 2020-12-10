@@ -40,7 +40,7 @@ namespace SDMS.Domain.Concrete
             }
         }
 
-        public int ReportForRepair(Repair repair)
+        public int ReportForRepair(string DormNum,string goods,string why,DateTime date)
         {
             using (var db = new SDMSEntities())
             {
@@ -48,7 +48,14 @@ namespace SDMS.Domain.Concrete
                 {
                     try
                     {
-                        
+                        Repair repair = new Repair();
+                        repair.DormNum = DormNum;
+                        repair.CommitDate = date;
+                        repair.Goods = goods;
+                        db.Repair.Add(repair);
+                        db.SaveChanges();
+                        dbContextTransaction.Commit();
+                        return 1;//添加成功
                     }
                     catch (Exception)
                     {

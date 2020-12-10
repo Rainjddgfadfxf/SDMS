@@ -10,7 +10,7 @@ namespace SDMS.Domain.Abstract
 {
     public interface ICommonRepository
     {
-        //寝室查询 //返回类型需要修改  自定义model类 需要学生list，水电，寝室
+        //寝室查询
         DormDetail SearchDorm(string Id);
         //学生查询
         Student SearchStudent(string Id);

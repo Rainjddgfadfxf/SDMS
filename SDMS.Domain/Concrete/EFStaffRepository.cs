@@ -19,9 +19,14 @@ namespace SDMS.Domain.Concrete
                     try
                     {
                         ChangeDorm changeDorm = db.ChangeDorm.Find(Id);
-                        if (changeDorm.StaffOpinion != null) return 0;//已被工作人员处理
-                        changeDorm.StaffOpinion = flag;
-                        return 1;//处理完成
+                        if (changeDorm.AdminOpinion != null) return 0;//管理员已处理，无需处理
+                        else
+                        {
+                            if (changeDorm.StaffOpinion != null) return 3;//已被工作人员处理
+                            changeDorm.StaffOpinion = flag;
+                            return 1;//处理完成
+                        }
+
                     }
                     catch (Exception)
                     {
@@ -31,8 +36,9 @@ namespace SDMS.Domain.Concrete
                 }
             }
         }
-        //未完成
-        public int DealRepair(int Id, bool flag)
+
+
+        public int DealRepair(int Id,decimal money, string ReasonsForUncompletion="无")
         {
             using (var db = new SDMSEntities())
             {
@@ -41,7 +47,14 @@ namespace SDMS.Domain.Concrete
                     try
                     {
                         Repair repair = db.Repair.Find(Id);
-                        return 1;
+                        if (repair != null && repair.ResolutionDate == null)
+                        {
+                            repair.ResolutionDate = DateTime.Now;
+                            repair.Money = money;
+                            repair.ReasonsForUncompletion = ReasonsForUncompletion;
+                            return 1;//维修完成
+                        }
+                        return 0;//该维修已处理
                     }
                     catch (Exception)
                     {
@@ -51,5 +64,6 @@ namespace SDMS.Domain.Concrete
                 }
             }
         }
+
     }
 }

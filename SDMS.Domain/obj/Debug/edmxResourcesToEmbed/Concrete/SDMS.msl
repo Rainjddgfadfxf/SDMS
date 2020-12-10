@@ -10,5 +10,107 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ChangeDorm">
+      <EntityTypeMapping TypeName="SDMSModel.ChangeDorm">
+        <MappingFragment StoreEntitySet="ChangeDorm">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="OldDormNum" ColumnName="OldDormNum" />
+          <ScalarProperty Name="NewDormNum" ColumnName="NewDormNum" />
+          <ScalarProperty Name="Why" ColumnName="Why" />
+          <ScalarProperty Name="Begindate" ColumnName="Begindate" />
+          <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+          <ScalarProperty Name="AgreeDate" ColumnName="AgreeDate" />
+          <ScalarProperty Name="StaffOpinion" ColumnName="StaffOpinion" />
+          <ScalarProperty Name="AdminOpinion" ColumnName="AdminOpinion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dorm">
+      <EntityTypeMapping TypeName="SDMSModel.Dorm">
+        <MappingFragment StoreEntitySet="Dorm">
+          <ScalarProperty Name="LouNum" ColumnName="LouNum" />
+          <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+          <ScalarProperty Name="AllowNum" ColumnName="AllowNum" />
+          <ScalarProperty Name="UsedNum" ColumnName="UsedNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DormHygiene">
+      <EntityTypeMapping TypeName="SDMSModel.DormHygiene">
+        <MappingFragment StoreEntitySet="DormHygiene">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+          <ScalarProperty Name="InspectionTime" ColumnName="InspectionTime" />
+          <ScalarProperty Name="Situation" ColumnName="Situation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lease">
+      <EntityTypeMapping TypeName="SDMSModel.Lease">
+        <MappingFragment StoreEntitySet="Lease">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+          <ScalarProperty Name="LeaseGood" ColumnName="LeaseGood" />
+          <ScalarProperty Name="LeaseDate" ColumnName="LeaseDate" />
+          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+          <ScalarProperty Name="LeaseMoney" ColumnName="LeaseMoney" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Repair">
+      <EntityTypeMapping TypeName="SDMSModel.Repair">
+        <MappingFragment StoreEntitySet="Repair">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+          <ScalarProperty Name="Goods" ColumnName="Goods" />
+          <ScalarProperty Name="Why" ColumnName="Why" />
+          <ScalarProperty Name="CommitDate" ColumnName="CommitDate" />
+          <ScalarProperty Name="ResolutionDate" ColumnName="ResolutionDate" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="ReasonsForUncompletion" ColumnName="ReasonsForUncompletion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff">
+      <EntityTypeMapping TypeName="SDMSModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Birth" ColumnName="Birth" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Managenment" ColumnName="Managenment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="SDMSModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WaterAndElectricity">
+      <EntityTypeMapping TypeName="SDMSModel.WaterAndElectricity">
+        <MappingFragment StoreEntitySet="WaterAndElectricity">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+          <ScalarProperty Name="Mouth" ColumnName="Mouth" />
+          <ScalarProperty Name="UseElectricity" ColumnName="UseElectricity" />
+          <ScalarProperty Name="EMoney" ColumnName="EMoney" />
+          <ScalarProperty Name="UseWater" ColumnName="UseWater" />
+          <ScalarProperty Name="WMoney" ColumnName="WMoney" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -10,7 +10,7 @@ namespace SDMS.WebUI.Controllers
     public class StudentController : Controller
     {
         private IAdminsRepository adminsRepository;
-        public HomeController(IAdminsRepository repository)
+        public StudentController(IAdminsRepository repository)
         {
             this.adminsRepository = repository;
         }

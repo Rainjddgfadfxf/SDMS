@@ -24,7 +24,8 @@ namespace SDMS.Domain.Abstract
         Staff SearchStaff(string Id);
         //工作人员查询 根据name
         IEnumerable<Staff> SearchStaffs(string name);
-
+        //换寝上报处理
+        int DealChangeDorm(int Id, bool flag);
 
     }
 }

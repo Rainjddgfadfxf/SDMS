@@ -17,11 +17,12 @@ namespace SDMS.Domain.Concrete
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Dorm()
         {
-            this.Student = new HashSet<Student>();
-            this.Lease = new HashSet<Lease>();
-            this.WaterAndElectricity = new HashSet<WaterAndElectricity>();
             this.ChangeDorm = new HashSet<ChangeDorm>();
             this.ChangeDorm1 = new HashSet<ChangeDorm>();
+            this.DormHygiene = new HashSet<DormHygiene>();
+            this.Lease = new HashSet<Lease>();
+            this.Student = new HashSet<Student>();
+            this.WaterAndElectricity = new HashSet<WaterAndElectricity>();
         }
     
         public string LouNum { get; set; }
@@ -30,14 +31,16 @@ namespace SDMS.Domain.Concrete
         public int UsedNum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student> Student { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Lease> Lease { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WaterAndElectricity> WaterAndElectricity { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChangeDorm> ChangeDorm { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChangeDorm> ChangeDorm1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DormHygiene> DormHygiene { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Lease> Lease { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WaterAndElectricity> WaterAndElectricity { get; set; }
     }
 }

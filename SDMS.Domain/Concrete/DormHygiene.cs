@@ -12,15 +12,13 @@ namespace SDMS.Domain.Concrete
     using System;
     using System.Collections.Generic;
     
-    public partial class Repair
+    public partial class DormHygiene
     {
         public int Id { get; set; }
         public string DormNum { get; set; }
-        public string Goods { get; set; }
-        public string Why { get; set; }
-        public System.DateTime CommitDate { get; set; }
-        public Nullable<System.DateTime> ResolutionDate { get; set; }
-        public Nullable<decimal> Money { get; set; }
-        public string ReasonsForUncompletion { get; set; }
+        public Nullable<System.DateTime> InspectionTime { get; set; }
+        public string Situation { get; set; }
+    
+        public virtual Dorm Dorm { get; set; }
     }
 }
