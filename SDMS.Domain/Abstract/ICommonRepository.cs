@@ -16,16 +16,16 @@ namespace SDMS.Domain.Abstract
         Student SearchStudent(string Id);
         //学生查询
         IEnumerable<Student> SearchStudents(String name);
+        //租赁查询
+        IEnumerable<Lease> SearchLeases();
         //空余寝室
         IEnumerable<Dorm> SpareDorm();
         //维修上报查询
         IEnumerable<Repair> SearchRepairs(string DormId);
         //换寝上报查询
-        IEnumerable<ChangeDorm> SearchChangeDorm(Student student);
+        IEnumerable<ChangeDorm> SearchChangeDorm(string code);
         //维修上报查询  管理员和工作人员用
         IEnumerable<Repair> Repairs { get; }
-        //换寝上报查询  管理员和工作人员用
-        IEnumerable<Student> Students { get; }
         //所有换寝上报
         IEnumerable<ChangeDorm> changeDorms { get; }
     }

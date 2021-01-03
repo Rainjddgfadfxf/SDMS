@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="38f4d7ea985547e19ad42524e63dce9a" Name="Diagram1">
+      <Diagram DiagramId="57bf9a1fb7064cb3ae31e9128b5a82f7" Name="Diagram1">
         <EntityTypeShape EntityType="SDMSModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SDMSModel.ChangeDorm" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SDMSModel.Dorm" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="SDMSModel.DormHygiene" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SDMSModel.Lease" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDMSModel.ChangeDorm" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDMSModel.Dorm" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDMSModel.DormHygiene" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDMSModel.Lease" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SDMSModel.Repair" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SDMSModel.Staff" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SDMSModel.Student" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SDMSModel.WaterAndElectricity" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDMSModel.WaterAndElectricity" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
         <AssociationConnector Association="SDMSModel.FK_ChangeDorm_Dorm" ManuallyRouted="false" />
         <AssociationConnector Association="SDMSModel.FK_ChangeDorm_Dorm1" ManuallyRouted="false" />
         <AssociationConnector Association="SDMSModel.FK_ChangeDorm_Student" ManuallyRouted="false" />

@@ -1,0 +1,35 @@
+﻿@model SSLS.WebUI.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>Login</h2>
+
+<div>
+    <h4>LoginViewModel</h4>
+    <div class="lowin-box-inner">
+        @using (Html.BeginForm())
+        {
+            <span class="whide">@Html.ValidationMessage("pwderror")</span>
+            <span class="whide">@Html.ValidationMessageFor(e => e.Id)</span>
+            <span class="whide">@Html.ValidationMessageFor(e => e.Password)</span>
+            <p>Sign in to continue</p>
+            <div class="lowin-group">
+                <label>Email</label>
+                @Html.TextBoxFor(c => c.Id, new { @class = "lowin-input" })
+            </div>
+            <div class="lowin-group password-group">
+                <label>Password</label>
+                @Html.PasswordFor(c => c.Password, new { @class = "lowin-input" })
+            </div>
+            <p>
+                <img src="/Student/CheckCode?id=new Date()" alt="看不清，切换图片" onclick="Change(this)" style="cursor:pointer;" />
+            </p>
+            <input name="code" id="code" type="text" class="lowin-input" autocomplete="off" /><br /><br />
+            <input type="submit" value="登录" class="lowin-btn login-btn" style="padding:0px" />
+
+        }
+    </div>
+</div>

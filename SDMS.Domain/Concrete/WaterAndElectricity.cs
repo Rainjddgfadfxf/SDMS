@@ -17,10 +17,12 @@ namespace SDMS.Domain.Concrete
         public int Id { get; set; }
         public string DormNum { get; set; }
         public string Mouth { get; set; }
-        public Nullable<decimal> UseElectricity { get; set; }
-        public Nullable<decimal> EMoney { get; set; }
-        public Nullable<decimal> UseWater { get; set; }
-        public Nullable<decimal> WMoney { get; set; }
+        public decimal UseElectricity { get; set; }
+        public decimal EMoney { get; set; }
+        public bool EPayment { get; set; }
+        public decimal UseWater { get; set; }
+        public decimal WMoney { get; set; }
+        public bool WPayment { get; set; }
     
         public virtual Dorm Dorm { get; set; }
     }

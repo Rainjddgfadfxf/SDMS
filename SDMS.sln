@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDMS.WebUI", "SDMS.WebUI\SD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDMS.Domain", "SDMS.Domain\SDMS.Domain.csproj", "{938BDF9A-D773-46D0-9A77-E3C2E06DE233}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDMS.WebAPI", "SDMS.WebAPI\SDMS.WebAPI.csproj", "{D63B216C-2F27-424C-B51F-1141BFE2A9CE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{938BDF9A-D773-46D0-9A77-E3C2E06DE233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{938BDF9A-D773-46D0-9A77-E3C2E06DE233}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{938BDF9A-D773-46D0-9A77-E3C2E06DE233}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D63B216C-2F27-424C-B51F-1141BFE2A9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D63B216C-2F27-424C-B51F-1141BFE2A9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D63B216C-2F27-424C-B51F-1141BFE2A9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D63B216C-2F27-424C-B51F-1141BFE2A9CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

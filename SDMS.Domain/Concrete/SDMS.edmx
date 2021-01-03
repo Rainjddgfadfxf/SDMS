@@ -10,7 +10,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="ChangeDorm">
@@ -25,7 +26,6 @@
           <Property Name="Begindate" Type="date" Nullable="false" />
           <Property Name="FinishDate" Type="date" />
           <Property Name="AgreeDate" Type="date" />
-          <Property Name="StaffOpinion" Type="bit" />
           <Property Name="AdminOpinion" Type="bit" />
         </EntityType>
         <EntityType Name="Dorm">
@@ -42,9 +42,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="DormNum" Type="nchar" MaxLength="10" />
-          <Property Name="InspectionTime" Type="date" />
-          <Property Name="Situation" Type="nchar" MaxLength="10" />
+          <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="InspectionTime" Type="date" Nullable="false" />
+          <Property Name="Situation" Type="int" Nullable="false" />
+          <Property Name="why" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Lease">
           <Key>
@@ -88,9 +89,9 @@
             <PropertyRef Name="Code" />
           </Key>
           <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Class" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Class" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Sex" Type="nchar" MaxLength="10" />
           <Property Name="Phone" Type="nchar" MaxLength="11" />
           <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
@@ -102,10 +103,12 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DormNum" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Mouth" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UseElectricity" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="EMoney" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="UseWater" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="WMoney" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="UseElectricity" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="EMoney" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="EPayment" Type="bit" Nullable="false" />
+          <Property Name="UseWater" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="WMoney" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="WPayment" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_ChangeDorm_Dorm">
           <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
@@ -144,7 +147,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DormHygiene_Dorm">
-          <End Role="Dorm" Type="Self.Dorm" Multiplicity="0..1" />
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
           <End Role="DormHygiene" Type="Self.DormHygiene" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dorm">
@@ -240,7 +243,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="ChangeDorm">
@@ -255,7 +259,6 @@
           <Property Name="Begindate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FinishDate" Type="DateTime" Precision="0" />
           <Property Name="AgreeDate" Type="DateTime" Precision="0" />
-          <Property Name="StaffOpinion" Type="Boolean" />
           <Property Name="AdminOpinion" Type="Boolean" />
           <NavigationProperty Name="Dorm" Relationship="Self.FK_ChangeDorm_Dorm" FromRole="ChangeDorm" ToRole="Dorm" />
           <NavigationProperty Name="Dorm1" Relationship="Self.FK_ChangeDorm_Dorm1" FromRole="ChangeDorm" ToRole="Dorm" />
@@ -281,9 +284,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="DormNum" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="InspectionTime" Type="DateTime" Precision="0" />
-          <Property Name="Situation" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DormNum" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="InspectionTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Situation" Type="Int32" Nullable="false" />
+          <Property Name="why" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Dorm" Relationship="Self.FK_DormHygiene_Dorm" FromRole="DormHygiene" ToRole="Dorm" />
         </EntityType>
         <EntityType Name="Lease">
@@ -329,9 +333,9 @@
             <PropertyRef Name="Code" />
           </Key>
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
           <Property Name="DormNum" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
@@ -345,10 +349,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DormNum" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Mouth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UseElectricity" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="EMoney" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="UseWater" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="WMoney" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="UseElectricity" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="EMoney" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="EPayment" Type="Boolean" Nullable="false" />
+          <Property Name="UseWater" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="WMoney" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="WPayment" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Dorm" Relationship="Self.FK_WaterAndElectricity_Dorm" FromRole="WaterAndElectricity" ToRole="Dorm" />
         </EntityType>
         <Association Name="FK_ChangeDorm_Dorm">
@@ -388,7 +394,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DormHygiene_Dorm">
-          <End Role="Dorm" Type="Self.Dorm" Multiplicity="0..1" />
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
           <End Role="DormHygiene" Type="Self.DormHygiene" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dorm">
@@ -484,6 +490,7 @@
             <EntityTypeMapping TypeName="SDMSModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PassWord" ColumnName="PassWord" />
               </MappingFragment>
@@ -500,7 +507,6 @@
                 <ScalarProperty Name="Begindate" ColumnName="Begindate" />
                 <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
                 <ScalarProperty Name="AgreeDate" ColumnName="AgreeDate" />
-                <ScalarProperty Name="StaffOpinion" ColumnName="StaffOpinion" />
                 <ScalarProperty Name="AdminOpinion" ColumnName="AdminOpinion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -522,6 +528,7 @@
                 <ScalarProperty Name="DormNum" ColumnName="DormNum" />
                 <ScalarProperty Name="InspectionTime" ColumnName="InspectionTime" />
                 <ScalarProperty Name="Situation" ColumnName="Situation" />
+                <ScalarProperty Name="why" ColumnName="why" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -586,8 +593,10 @@
                 <ScalarProperty Name="Mouth" ColumnName="Mouth" />
                 <ScalarProperty Name="UseElectricity" ColumnName="UseElectricity" />
                 <ScalarProperty Name="EMoney" ColumnName="EMoney" />
+                <ScalarProperty Name="EPayment" ColumnName="EPayment" />
                 <ScalarProperty Name="UseWater" ColumnName="UseWater" />
                 <ScalarProperty Name="WMoney" ColumnName="WMoney" />
+                <ScalarProperty Name="WPayment" ColumnName="WPayment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -18,13 +18,6 @@ namespace SDMS.Domain.Concrete
                 return db.Repair;
             }
         }
-        public IEnumerable<Student> Students
-        {
-            get
-            {
-                return db.Student;
-            }
-        }
 
         public IEnumerable<ChangeDorm> changeDorms
         {
@@ -34,9 +27,9 @@ namespace SDMS.Domain.Concrete
             }
         }
 
-        public IEnumerable<ChangeDorm> SearchChangeDorm(Student student)
+        public IEnumerable<ChangeDorm> SearchChangeDorm(string code)
         {
-            return db.ChangeDorm.Where(e => e.StudentId == student.Code);
+            return db.ChangeDorm.Where(e => e.StudentId == code);
         }
 
         public  DormDetail SearchDorm(string dormNum)
@@ -53,6 +46,11 @@ namespace SDMS.Domain.Concrete
                 dormHygienes = dormHygienes
             };
 
+        }
+
+        public IEnumerable<Lease> SearchLeases()
+        {
+            return db.Lease;
         }
 
         public IEnumerable<Repair> SearchRepairs(string DormId)

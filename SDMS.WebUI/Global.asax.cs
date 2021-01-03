@@ -1,4 +1,6 @@
+using SDMS.Domain.Concrete;
 using SDMS.WebUI.Infrastructure;
+using SDMS.WebUI.Infrastructure.Binders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,8 @@ namespace SDMS.WebUI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(Student), new StudentModelBinder());
+            ModelBinders.Binders.Add(typeof(Admin), new AdminModelBinder());
         }
     }
 }

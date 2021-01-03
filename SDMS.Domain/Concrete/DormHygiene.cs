@@ -16,8 +16,9 @@ namespace SDMS.Domain.Concrete
     {
         public int Id { get; set; }
         public string DormNum { get; set; }
-        public Nullable<System.DateTime> InspectionTime { get; set; }
-        public string Situation { get; set; }
+        public System.DateTime InspectionTime { get; set; }
+        public int Situation { get; set; }
+        public string why { get; set; }
     
         public virtual Dorm Dorm { get; set; }
     }

@@ -11,21 +11,16 @@ namespace SDMS.Domain.Abstract
     {
         IEnumerable<Admin> Admins { get; }
         IEnumerable<Student> Students { get; }
-        IEnumerable<Staff> Staffs { get; }
+        IEnumerable<Dorm> Dorms { get; }
         //修改学生
         int EditStudent(Student student);
         //删除学生
         int DeleteStudent(string Id);
-        //修改工作人员
-        int EditStaff(Staff staff);
-        //删除工作人员
-        int DeleteStaff(string Id);
-        //工作人员查询 根据Id
-        Staff SearchStaff(string Id);
-        //工作人员查询 根据name
-        IEnumerable<Staff> SearchStaffs(string name);
         //换寝上报处理
-        int DealChangeDorm(int Id, bool flag);
-
+        int DealChangeDorm(int Id, bool flag,string why);
+        //维修上报处理
+        int DealRepair(int Id, decimal money, string ReasonsForUncompletion = "无");
+        int EditDorm(Dorm dorm);
+        int DeleteDorm(String Id);
     }
 }
